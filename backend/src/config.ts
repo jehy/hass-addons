@@ -24,7 +24,7 @@ function extractRecorderConfig(
   dbConnectString?: string,
 ): Partial<DataSourceOptions> {
   if (dbType && dbConnectString) {
-    return { type: dbType as DBType, connectString: dbConnectString };
+    return { type: dbType as DBType, url: dbConnectString };
   }
   // TODO: search in packages?
   // TODO: check secrets?
@@ -40,7 +40,7 @@ function extractRecorderConfig(
   if (data?.recorder?.db_url) {
     const type = fixDbType(data.recorder.db_url.split('://')[0]);
     const connectString = fixConnectStr(data.recorder.db_url);
-    return { type, connectString };
+    return { type, url: connectString };
   }
   const sqliteFileName = path.join(
     __dirname,
