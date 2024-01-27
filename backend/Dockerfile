@@ -15,4 +15,4 @@ ENV NODE_ENV production
 EXPOSE 8080
 
 # Start the server using the production build
-CMD [ "node", "dist/src/main.js" ]
+CMD [ "node", "dist/backend/src/main.js" ]
