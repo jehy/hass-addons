@@ -1,0 +1,38 @@
+name: Build
+on: [push]
+jobs:
+  build-and-test-dbstats:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18, 20 ]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install shared deps
+        working-directory: ./shared
+        run: npm ci
+      - name: Install backend deps
+        working-directory: ./backend
+        run: npm ci
+      - name: Install frontend deps
+        working-directory: ./frontend
+        run: npm ci
+      - name: build front
+        working-directory: ./frontend
+        run: npm run build
+      - name: build back
+        working-directory: ./backend
+        run: npm run build
+      - name: test backend
+        working-directory: ./backend
+        run: npm run test
+      - name: lint backend
+        working-directory: ./backend
+        run: npm run lint
+      - name: lint frontend
+        working-directory: ./frontend
+        run: npm run lint

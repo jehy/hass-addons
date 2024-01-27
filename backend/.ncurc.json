@@ -1,0 +1,3 @@
+{
+    "reject": ["axios", "p-map", "p-throttle","p-retry", "@types/node", "prettier", "eslint-plugin-prettier"]
+}

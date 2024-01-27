@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "resolveJsonModule": true,
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "es2017",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "rootDir": "../",
+    "incremental": true,
+    "skipLibCheck": true,
+    "composite": true,
+    "noUncheckedIndexedAccess": true,
+    "paths": {
+      "@dbstats/shared/*": ["../shared/*"]
+    }
+  },
+  "include": ["./src", "../shared", "jest.config.ts", "tsconfig.json", "test", "package.json"]
+}

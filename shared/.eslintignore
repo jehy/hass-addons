@@ -1,0 +1,6 @@
+# .estlintignore file
+dist
+build
+node_modules/
+config-overrides.js
+*.d.ts
