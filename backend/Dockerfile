@@ -12,7 +12,7 @@ COPY --chown=node:node . ./
 # Set NODE_ENV environment variable
 ENV NODE_ENV production
 
-EXPOSE 8080
+EXPOSE 3000
 
 # Start the server using the production build
 CMD [ "node", "dist/backend/src/main.js" ]

@@ -77,7 +77,7 @@ class ConfigProvider {
         logging: env.DB_LOGGING === 'true',
       },
       server: {
-        port: parseInt(env.port, 10) || 3000,
+        port: parseInt(env.SERVER_PORT, 10) || 3000,
       },
     };
     Object.freeze(this.data);

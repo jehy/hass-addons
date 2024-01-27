@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
-import { ValidationPipe } from '@nestjs/common';
+import { Logger, ValidationPipe } from '@nestjs/common';
 import helmet from 'helmet';
 import { json, urlencoded } from 'express';
 import configProvider from './config';
@@ -27,5 +27,7 @@ async function bootstrap() {
     }),
   );
   await app.listen(configProvider().server.port);
+  const logger = new Logger('bootstrap');
+  logger.log(`Started on port ${configProvider().server.port}`);
 }
 bootstrap();
