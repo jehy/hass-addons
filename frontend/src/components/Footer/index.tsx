@@ -18,7 +18,7 @@ function Footer() {
       >
         <Box>
           <Typography variant="subtitle1">
-            &copy; 2022
+            by Jehy
           </Typography>
         </Box>
         <Typography
