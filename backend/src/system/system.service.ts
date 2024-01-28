@@ -12,36 +12,63 @@ export class SystemService {
     private repoLong: Repository<Statistics>,
   ) {}
 
+  private async getSqliteTables() {
+    return (await this.repoLong.manager.query(
+      `SELECT name FROM sqlite_master WHERE type='table'`,
+    )) as Array<{ name: string }>;
+  }
+
   async getTableRows(): Promise<Array<ICountStats>> {
     //select m.entity_id, count(1) from states s, states_meta m where s.metadata_id=m.metadata_id group by m.entity_id
     const dbType = configProvider().typeOrmConfig.type;
-    if (dbType !== 'postgres') {
-      throw new BadRequestException(
-        `Database type ${dbType} not supported yet for this chart`,
-      );
+    if (dbType === 'sqlite') {
+      const tables = await this.getSqliteTables();
+      const res = [];
+      for (let i = 0; i < tables.length; i++) {
+        const rows = (await this.repoLong.manager.query(
+          `SELECT count (*) cnt from ${tables[i]}`,
+        )) as Array<{ cnt: number }>;
+        res.push({ type: tables[i], cnt: rows[0].cnt });
+      }
+      return res;
     }
-
-    const data = await this.repoLong.manager
-      .query(`SELECT relname type,n_live_tup cnt
+    if (dbType === 'postgres') {
+      const data = await this.repoLong.manager
+        .query(`SELECT relname type,n_live_tup cnt
               FROM pg_stat_user_tables
             ORDER BY n_live_tup DESC`);
-    return data;
+      return data;
+    }
+    throw new BadRequestException(
+      `Database type ${dbType} not supported yet for this chart`,
+    );
   }
 
   async getTableSize(): Promise<Array<ICountStats>> {
     //select m.entity_id, count(1) from states s, states_meta m where s.metadata_id=m.metadata_id group by m.entity_id
     const dbType = configProvider().typeOrmConfig.type;
-    if (dbType !== 'postgres') {
-      throw new BadRequestException(
-        `Database type ${dbType} not supported yet for this chart`,
-      );
+    if (dbType === 'sqlite') {
+      const tables = await this.getSqliteTables();
+      const res = [];
+      for (let i = 0; i < tables.length; i++) {
+        const rows = (await this.repoLong.manager.query(
+          `SELECT SUM("pgsize") FROM "dbstat" WHERE name=' ${tables[i]}';`,
+        )) as Array<{ cnt: number }>;
+        res.push({ type: tables[i], cnt: rows[0].cnt });
+      }
+      return res;
     }
-    const data = await this.repoLong.manager.query(`select
+    if (dbType === 'postgres') {
+      const data = await this.repoLong.manager.query(`select
         table_name type,
             pg_total_relation_size(quote_ident(table_name))/1024/1024 cnt
         from information_schema.tables
         where table_schema = 'public'
         order by pg_total_relation_size(quote_ident(table_name)) desc;`);
-    return data;
+      return data;
+    }
+    throw new BadRequestException(
+      `Database type ${dbType} not supported yet for this chart`,
+    );
   }
 }
