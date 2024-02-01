@@ -172,7 +172,17 @@ function SidebarMenu() {
                                 >
                                     Database charts
                                 </Button>
-                            </ListItem>
+                            </ListItem><ListItem component="div">
+                            <Button
+                                disableRipple
+                                component={RouterLink}
+                                onClick={closeSidebar}
+                                to="https://data.home-assistant.io/docs/data"
+                                startIcon={<TableChartTwoToneIcon/>}
+                            >
+                                HA data types
+                            </Button>
+                        </ListItem>
                         </List>
                     </SubMenuWrapper>
             </MenuWrapper>

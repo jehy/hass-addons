@@ -1,0 +1,17 @@
+homeassistant:
+  packages: !include_dir_merge_named packages
+http:
+  # For extra security set this to only accept connections on localhost if NGINX is on the same machine
+  # Uncommenting this will mean that you can only reach Home Assistant using the proxy, not directly via IP from other clients.
+  # server_host: 127.0.0.1
+  use_x_forwarded_for: true
+  # You must set the trusted proxy IP address so that Home Assistant will properly accept connections
+  # Set this to your NGINX machine IP, or localhost if hosted on the same machine.
+  trusted_proxies:
+    - 127.0.0.1
+    - 172.17.0.1
+    - 172.18.0.1
+    - 192.168.66.30
+    - 172.24.0.1
+    - 192.168.192.1
+    - 192.168.224.1

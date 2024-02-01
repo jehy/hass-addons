@@ -1,0 +1,8 @@
+# - platform: sql
+sql:
+  - name: psql_size
+    #scan_interval: 10
+    unique_id: psql_size
+    query: "SELECT (pg_database_size('homeass')/1024/1024) as db_size;"
+    column: "db_size"
+    unit_of_measurement: MB

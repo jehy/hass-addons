@@ -4,7 +4,7 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
-import configProvider from './config';
+import config from './config';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { LogRequestsMiddleware } from './middleware/log-requests-middleware.service';
 import { DatabaseModule } from './database.module';
@@ -17,7 +17,7 @@ import { SystemModule } from './system/system.module';
   imports: [
     DatabaseModule,
     ConfigModule.forRoot({
-      load: [configProvider],
+      load: [config],
       isGlobal: true,
     }),
     EventModule,
