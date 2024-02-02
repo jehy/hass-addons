@@ -7,7 +7,7 @@ image: ghcr.io/jehy/hass-dbstats
 url: https://github.com/jehy/hass-dbstats
 codenotary: fate@jehy.ru
 ingress: true
-ingress_port: 0
+ingress_port: 3000
 ingress_stream: true
 panel_icon: mdi:database
 init: false
