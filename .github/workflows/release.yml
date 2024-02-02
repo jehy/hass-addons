@@ -15,6 +15,10 @@ jobs:
       contents: read
       packages: write
     steps:
+      - name: Set correct environment
+        run: |
+          TAG=${{ steps.tag.outputs.tag }}
+          echo "TAG=$TAG" >> "$GITHUB_ENV"
       - uses: actions/checkout@v4
       - name: Use Node.js 20.11.0
         uses: actions/setup-node@v4
@@ -58,5 +62,9 @@ jobs:
         with:
           context: ./backend
           push: true
-          tags: ${{ steps.meta.outputs.tags | dev }}
+          tags: |
+            type=semver,pattern={{major}}.{{minor}}.{{patch}},value=${{ env.TAG }}
+            type=semver,pattern={{major}}.{{minor}},value=${{ env.TAG }}
+            type=semver,pattern={{major}},value=${{ env.TAG }}
+            type=raw,value=dev
           labels: ${{ steps.meta.outputs.labels }}
