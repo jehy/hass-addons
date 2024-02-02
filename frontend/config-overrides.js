@@ -1,11 +1,11 @@
-/*// config-overrides.js
+// config-overrides.js
 const {aliasWebpack, aliasJest} = require('react-app-alias-ex')
 
 const options = {} // default is empty for most cases
 
 module.exports = aliasWebpack(options)
 module.exports.jest = aliasJest(options)
-*/
+
 
 /*
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -17,8 +17,6 @@ module.exports = function override(config, env) {
     }
     return config
 }
-*/
-
 
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin')
 const StyleExtHtmlWebpackPlugin = require('style-ext-html-webpack-plugin')
@@ -32,3 +30,4 @@ module.exports = function override(config, env) {
     }
     return config
 }
+*/
