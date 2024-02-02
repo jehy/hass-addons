@@ -4,6 +4,7 @@ import { AppModule } from './app.module';
 import { Logger, ValidationPipe } from '@nestjs/common';
 import { json, urlencoded } from 'express';
 import configProvider from './config';
+import './ha-proxy';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
