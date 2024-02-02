@@ -11,7 +11,7 @@ ingress_port: 0
 ingress_stream: true
 panel_icon: mdi:database
 init: false
-homeassistant: 2024.2.1
+homeassistant: 2022.1.1
 arch:
   - armhf
   - armv7
