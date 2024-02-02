@@ -3,7 +3,7 @@ name: Hass-DbStats
 version: dev
 slug: hass-dbstats
 description: Database stats for Home Assistant
-image: ghcr.io/jehy/hass-dbstats
+image: ghcr.io/jehy/hass-dbstats:latest
 url: https://github.com/jehy/hass-dbstats
 codenotary: fate@jehy.ru
 ingress: true
