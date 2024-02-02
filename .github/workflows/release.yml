@@ -64,7 +64,6 @@ jobs:
           push: true
           tags: |
             type=semver,pattern={{major}}.{{minor}}.{{patch}},value=${{ env.TAG }}
-            type=semver,pattern={{major}}.{{minor}},value=${{ env.TAG }}
             type=semver,pattern={{major}},value=${{ env.TAG }}
             type=raw,value=dev
           labels: ${{ steps.meta.outputs.labels }}
