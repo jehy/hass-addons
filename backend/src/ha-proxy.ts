@@ -53,6 +53,11 @@ const apiProxy = createProxyMiddleware('/', {
           /(?<=["'= \\])\/(api|static)(\\?\/)/g,
           req.headers['x-ingress-path'] + '/$1$2',
         );
+        bodyString = bodyString.replace(
+          // fix react load
+          `return"static/js/"`,
+          `return"${req.headers['x-ingress-path']}/static/js/"`,
+        );
 
         if (proxyRes.headers['transfer-encoding'] == 'chunked') {
           res.end(Buffer.from(bodyString));
