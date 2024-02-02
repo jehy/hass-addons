@@ -12,6 +12,7 @@ export class LogRequestsMiddleware implements NestMiddleware {
   use(request: NestRequest, response: Response, next: NextFunction): void {
     const { ip, method, originalUrl: url } = request;
     const userAgent = request.get('user-agent') || '';
+    this.logger.log(JSON.stringify(request.headers));
 
     response.on('close', () => {
       const { statusCode } = response;
