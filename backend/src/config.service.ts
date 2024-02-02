@@ -127,6 +127,7 @@ postgresql://@/DB_NAME?host=/path/to/dir
   ): Partial<DataSourceOptions> {
     const dbType = ConfigService.getDbTypeFromConnectionString(dbConnectString);
     if (dbType === 'sqlite') {
+      // https://www.sqlite.org/c3ref/c_open_autoproxy.html
       // #define SQLITE_OPEN_READONLY         0x00000001  /* Ok for sqlite3_open_v2() */
       const options: SqliteConnectionOptions = {
         type: 'sqlite',
@@ -268,6 +269,8 @@ postgresql://@/DB_NAME?host=/path/to/dir
       throw new Error(`SQLite database file not found in ${sqliteFileName}`);
     }
     this.logger.log(`Found standard sqlite file, gonna use it`);
-    return { type: 'sqlite', database: sqliteFileName, flags: 0x00000001 };
+    return ConfigService.connectionStringToDatabaseOptions(
+      `sqlite://${sqliteFileName}`,
+    );
   }
 }
