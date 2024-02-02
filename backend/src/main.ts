@@ -4,7 +4,7 @@ import { AppModule } from './app.module';
 import { Logger, ValidationPipe } from '@nestjs/common';
 import { json, urlencoded } from 'express';
 import configProvider from './config';
-import './ha-proxy';
+import proxySetup from './ha-proxy';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -29,5 +29,10 @@ async function bootstrap() {
   await app.listen(configProvider().server.port);
   const logger = new Logger('bootstrap');
   logger.log(`Started on port ${configProvider().server.port}`);
+  if (process.env.SUPERVISOR_TOKEN) {
+    logger.log(`Wow, we're running on supervisor!`);
+  }
+  proxySetup();
+  logger.log(`Ingress proxy started on port 6000`);
 }
 bootstrap();

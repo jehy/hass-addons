@@ -67,9 +67,10 @@ const apiProxy = createProxyMiddleware('/', {
   },
 });
 
-const app = express();
-// @ts-ignore
-app.use((req: Request, res: Response, next: NextFunction) => {
-  next();
-}, apiProxy);
-app.listen(6000);
+export default () => {
+  const app = express();
+  app.use((req: Request, res: Response, next: NextFunction) => {
+    next();
+  }, apiProxy);
+  app.listen(6000);
+};
