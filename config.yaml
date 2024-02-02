@@ -1,0 +1,26 @@
+---
+name: Hass-DbStats
+version: dev
+slug: hass-dbstats
+description: Database stats for Home Assistant
+image: ghcr.io/jehy/hass-dbstats
+url: https://github.com/jehy/hass-dbstats
+codenotary: fate@jehy.ru
+ingress: true
+ingress_port: 0
+ingress_stream: true
+panel_icon: mdi:database
+init: false
+homeassistant: 2024.2.1
+arch:
+  - armhf
+  - armv7
+  - aarch64
+  - amd64
+  - i386
+ports:
+  80/tcp: 3000
+ports_description:
+  80/tcp: Web interface
+map:
+  - homeassistant_config:ro

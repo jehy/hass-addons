@@ -43,7 +43,7 @@ export class ConfigService {
     this.logger = new Logger(ConfigService.name);
     const { env } = process;
     const typeOrmConfig = this.extractRecorderConfig(
-      haHomeDir || env.HOME_DIR,
+      haHomeDir || env.HOME_DIR || '/homeassistant',
       env.DB_CONNECT_STRING,
     );
     this.secretCache = {};
