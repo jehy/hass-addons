@@ -8,7 +8,7 @@ describe('Config Service', () => {
     );
     expect(res.data.typeOrmConfig).toEqual({
       type: 'postgres',
-      url: 'LOGIN:PASSWORD@192.168.66.30:5432/homeass',
+      url: 'postgresql://***@192.168.66.30:5432/homeass',
     });
   });
   it('should find and parse connection string in secrets', () => {
@@ -17,7 +17,7 @@ describe('Config Service', () => {
     );
     expect(res.data.typeOrmConfig).toEqual({
       type: 'postgres',
-      url: 'LOGIN:PASSWORD@192.168.66.30:5432/homeass',
+      url: 'postgresql://***@192.168.66.30:5432/homeass',
     });
   });
   it('should find and parse connection string in packages', () => {
@@ -26,7 +26,7 @@ describe('Config Service', () => {
     );
     expect(res.data.typeOrmConfig).toEqual({
       type: 'postgres',
-      url: 'LOGIN:PASSWORD@192.168.66.30:5432/homeass',
+      url: 'postgresql://***@192.168.66.30:5432/homeass',
     });
   });
   it('should find sqlite file in config', () => {
