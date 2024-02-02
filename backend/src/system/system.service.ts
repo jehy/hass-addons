@@ -39,6 +39,13 @@ export class SystemService {
             ORDER BY n_live_tup DESC`);
       return data;
     }
+    if (dbType === 'mysql') {
+      // TODO: get only table rows from HA
+      const data = await this.repoLong.manager.query(
+        `SELECT table_name type, TABLE_ROWS cnt FROM INFORMATION_SCHEMA.TABLES`,
+      );
+      return data;
+    }
     throw new BadRequestException(
       `Database type ${dbType} not supported yet for this chart`,
     );
@@ -65,6 +72,16 @@ export class SystemService {
         from information_schema.tables
         where table_schema = 'public'
         order by pg_total_relation_size(quote_ident(table_name)) desc;`);
+      return data;
+    }
+    if (dbType === 'mysql') {
+      // TODO: get only table rows from HA
+      const data = await this.repoLong.manager.query(`SELECT 
+     table_schema as \`Database\`, 
+     table_name type, 
+     round(((data_length + index_length) / 1024 / 1024), 2) cnt 
+FROM information_schema.TABLES 
+ORDER BY (data_length + index_length) DESC;`);
       return data;
     }
     throw new BadRequestException(
