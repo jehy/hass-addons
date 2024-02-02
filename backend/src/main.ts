@@ -32,7 +32,7 @@ async function bootstrap() {
   if (process.env.SUPERVISOR_TOKEN) {
     logger.log(`Wow, we're running on supervisor!`);
     proxySetup();
-    logger.log(`Ingress proxy started on port 6000`);
+    logger.log(`Ingress proxy started on port 6060`);
   } else {
     logger.log(`Not running on supervisor, additional proxy wont be used`);
   }

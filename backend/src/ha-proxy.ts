@@ -18,10 +18,11 @@ const apiProxy = createProxyMiddleware('/', {
     //console.log("request-headers:");
     //console.log(req.headers);
 
+    const ingress = req.headers['x-ingress-path'] || '';
     // modify Location: response header
     if (typeof proxyRes.headers.location !== 'undefined') {
       let redirect = proxyRes.headers.location;
-      redirect = req.headers['x-ingress-path'] + redirect;
+      redirect = ingress + redirect;
       proxyRes.headers.location = redirect;
     }
 
@@ -51,19 +52,23 @@ const apiProxy = createProxyMiddleware('/', {
         let bodyString = body.toString('utf-8');
         bodyString = bodyString.replace(
           /(?<=["'= \\])\/(api|static)(\\?\/)/g,
-          req.headers['x-ingress-path'] + '/$1$2',
+          ingress + '/$1$2',
         );
         bodyString = bodyString.replace(
           // fix react load
           `return"static/js/"`,
-          `return"${req.headers['x-ingress-path']}/static/js/"`,
+          `return"${ingress}/static/js/"`,
         );
 
         if (proxyRes.headers['transfer-encoding'] == 'chunked') {
-          res.end(Buffer.from(bodyString));
+          res
+            .setHeader('content-type', proxyRes.headers['content-type'])
+            .end(Buffer.from(bodyString));
         } else {
-          res.send(Buffer.from(bodyString));
-          res.end();
+          res
+            .setHeader('content-type', proxyRes.headers['content-type'])
+            .send(Buffer.from(bodyString))
+            .end();
         }
       } else {
         res.end(body);
@@ -77,5 +82,5 @@ export default () => {
   app.use((req: Request, res: Response, next: NextFunction) => {
     next();
   }, apiProxy);
-  app.listen(6000);
+  app.listen(6060);
 };
