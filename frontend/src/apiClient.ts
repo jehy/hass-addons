@@ -32,7 +32,7 @@ const getHeaders = () => {
 
 async function countEventTypes(): Promise<Array<ICountStats>> {
 
-    const url = `/api/event/countEventTypes`;
+    const url = `api/event/countEventTypes`;
     const response = await fetch(url, {
         method: 'GET', // *GET, POST, PUT, DELETE, etc.
         headers: getHeaders(),
