@@ -7,7 +7,7 @@ image: ghcr.io/jehy/hass-dbstats
 url: https://github.com/jehy/hass-dbstats
 codenotary: fate@jehy.ru
 ingress: true
-ingress_port: 6060
+ingress_port: 3000
 ingress_stream: true
 panel_icon: mdi:database
 init: false
@@ -19,7 +19,7 @@ arch:
   - amd64
   - i386
 ports:
-  80/tcp: 6060
+  80/tcp: 3000
 ports_description:
   80/tcp: Web interface
 map:
