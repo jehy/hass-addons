@@ -9,7 +9,6 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN \
     apk add --no-cache \
         nginx=1.24.0-r15 \
-    && apk del --no-cache --purge .build-dependencies \
     && rm -f -r /etc/nginx
 
 # Copy root file system
