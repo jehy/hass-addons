@@ -1,5 +1,8 @@
 import * as express from 'express';
-import { createProxyMiddleware } from 'http-proxy-middleware';
+import {
+  createProxyMiddleware,
+  responseInterceptor,
+} from 'http-proxy-middleware';
 
 import type { Request, Response, NextFunction } from 'express';
 
@@ -11,70 +14,44 @@ const apiProxy = createProxyMiddleware('/', {
   changeOrigin: true, // for vhosted sites,
   //logLevel: 'debug',
   selfHandleResponse: true,
-  onProxyRes(proxyRes, req: Request, res: Response) {
-    //console.log(proxyRes.statusCode);
-    //console.log("response-headers:");
-    //console.log(proxyRes.headers);
-    //console.log("request-headers:");
-    //console.log(req.headers);
-
+  timeout: 1200000, // max 20 min
+  onProxyRes: responseInterceptor(async (responseBody, proxyRes, req, res) => {
+    // modify Location: response header if present
     const ingress = req.headers['x-ingress-path'] || '';
-    // modify Location: response header
     if (typeof proxyRes.headers.location !== 'undefined') {
-      let redirect = proxyRes.headers.location;
+      // replace any absolute http/https path with a relative one
+      let redirect: string = proxyRes.headers.location.replace(
+        /(http|https):\/\/(.*?)\//,
+        '/',
+      );
       redirect = ingress + redirect;
-      proxyRes.headers.location = redirect;
+      res.setHeader('location', redirect);
     }
 
-    const bodyChunks = [];
-    proxyRes.on('data', (chunk) => {
-      bodyChunks.push(chunk);
-    });
-    proxyRes.on('end', () => {
-      const body = Buffer.concat(bodyChunks);
+    // modifying textual response bodies
+    if (
+      proxyRes.headers['content-type'] &&
+      (proxyRes.headers['content-type'].includes('text/') ||
+        proxyRes.headers['content-type'].includes('application/javascript') ||
+        proxyRes.headers['content-type'].includes('application/json'))
+    ) {
+      let body = responseBody.toString('utf8');
 
-      // forwarding source status
-      res.status(proxyRes.statusCode);
+      body = body.replace(
+        /(?<=["'= \(\\]|\\u0027)\/(api|static)(\\?\/)(?!hassio_ingress)/g,
+        ingress + '/$1$2',
+      );
+      body = body.replace(
+        // fix react load
+        `return"static/js/"`,
+        `return"${ingress}/static/js/"`,
+      );
 
-      // forwarding source headers
-      Object.keys(proxyRes.headers).forEach((key) => {
-        res.append(key, proxyRes.headers[key]);
-      });
-
-      // modifying textual response bodies
-      if (
-        proxyRes.headers['content-type'] &&
-        (proxyRes.headers['content-type'].includes('text/') ||
-          proxyRes.headers['content-type'].includes('application/javascript') ||
-          proxyRes.headers['content-type'].includes('application/json'))
-      ) {
-        // if this a textual response body we make sure to prepend the ingress path
-        let bodyString = body.toString('utf-8');
-        bodyString = bodyString.replace(
-          /(?<=["'= \\])\/(api|static)(\\?\/)/g,
-          ingress + '/$1$2',
-        );
-        bodyString = bodyString.replace(
-          // fix react load
-          `return"static/js/"`,
-          `return"${ingress}/static/js/"`,
-        );
-
-        if (proxyRes.headers['transfer-encoding'] == 'chunked') {
-          res
-            .setHeader('content-type', proxyRes.headers['content-type'])
-            .end(Buffer.from(bodyString));
-        } else {
-          res
-            .setHeader('content-type', proxyRes.headers['content-type'])
-            .send(Buffer.from(bodyString))
-            .end();
-        }
-      } else {
-        res.end(body);
-      }
-    });
-  },
+      return Buffer.from(body, 'utf8');
+    } else {
+      return responseBody;
+    }
+  }),
 });
 
 export default () => {
