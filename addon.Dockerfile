@@ -16,8 +16,8 @@ COPY rootfs /
 # Copy prebuilt app
 RUN mkdir -p /usr/src/app
 RUN mkdir -p /var/www/html
-COPY --chown=node:node backend/* /usr/src/app
-COPY --chown=node:node frontend/* /var/www/html
+COPY backend/dist /usr/src/app
+COPY frontend/build/* /var/www/html
 
 # Build arguments
 ARG BUILD_ARCH
