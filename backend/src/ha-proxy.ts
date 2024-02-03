@@ -46,6 +46,10 @@ const apiProxy = createProxyMiddleware('/', {
         `return"static/js/"`,
         `return"${ingress}/static/js/"`,
       );
+      body = body.replace(
+        'href="/manifest.json"/',
+        `href="/${ingress}/manifest.json"/`,
+      );
 
       return Buffer.from(body, 'utf8');
     } else {
