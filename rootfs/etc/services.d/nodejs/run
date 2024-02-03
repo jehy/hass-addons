@@ -1,0 +1,7 @@
+#!/command/with-contenv bashio
+# ==============================================================================
+# Home Assistant Add-on: dbstats
+# Runs dbstats
+# ==============================================================================
+bashio::log.info "Starting dbstats..."
+exec nodejs /usr/src/app/dist/backend/src/main.js

@@ -2,14 +2,14 @@ name: Publish
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
+  IMAGE_NAME: ${{ github.repository }}-addon
 
 on:
   release:
     types: [published]
 jobs:
-  release_db_stats_docker:
-    name: ReleaseDbStats
+  release_db_stats_addon:
+    name: ReleaseDbStatsAddon
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -59,8 +59,6 @@ jobs:
       - name: build front
         working-directory: ./frontend
         run: npm run build
-      - name: copy front to back
-        run: cp frontend/build backend/dist/ -r
       - name: Log in to the Container registry
         uses: docker/login-action@v3
         with:
@@ -70,7 +68,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
-          context: .
+          file: addon.Dockerfile
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}

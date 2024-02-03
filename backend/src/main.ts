@@ -4,7 +4,6 @@ import { AppModule } from './app.module';
 import { Logger, ValidationPipe } from '@nestjs/common';
 import { json, urlencoded } from 'express';
 import configProvider from './config';
-import proxySetup from './ha-proxy';
 import { version } from '../package.json';
 
 async function bootstrap() {
@@ -36,11 +35,8 @@ async function bootstrap() {
   );
   if (process.env.SUPERVISOR_TOKEN) {
     logger.log(`Wow, we're running on supervisor!`);
-    //proxySetup();
-    logger.log(`Ingress proxy started on port 6060`);
   } else {
-    //proxySetup();
-    logger.log(`Not running on supervisor, additional proxy wont be used`);
+    logger.log(`Not running on supervisor, okay`);
   }
 }
 bootstrap();
