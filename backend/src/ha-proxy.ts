@@ -31,9 +31,9 @@ const apiProxy = createProxyMiddleware('/', {
     // modifying textual response bodies
     if (
       proxyRes.headers['content-type'] &&
-      (proxyRes.headers['content-type'].includes('text/') ||
-        proxyRes.headers['content-type'].includes('application/javascript') ||
-        proxyRes.headers['content-type'].includes('application/json'))
+      proxyRes.headers['content-type'].includes('text/') // ||
+      //proxyRes.headers['content-type'].includes('application/javascript') ||
+      //proxyRes.headers['content-type'].includes('application/json')
     ) {
       let body = responseBody.toString('utf8');
 

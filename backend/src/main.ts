@@ -34,6 +34,7 @@ async function bootstrap() {
     proxySetup();
     logger.log(`Ingress proxy started on port 6060`);
   } else {
+    proxySetup();
     logger.log(`Not running on supervisor, additional proxy wont be used`);
   }
 }
