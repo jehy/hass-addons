@@ -29,6 +29,18 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20.11.0
+      - name: 'change backend version'
+        uses: reedyuk/npm-version@1.1.1
+        with:
+          version: env.RELEASE_VERSION
+          package: './backend'
+          git-tag-version: 'false'
+      - name: 'change frontend  version'
+        uses: reedyuk/npm-version@1.1.1
+        with:
+          version: env.RELEASE_VERSION
+          package: './frontend'
+          git-tag-version: 'false'
       - name: Install shared deps
         working-directory: ./shared
         run: npm ci
@@ -50,13 +62,13 @@ jobs:
       - name: copy front to back
         run: cp frontend/build backend/dist/ -r
       - name: Log in to the Container registry
-        uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
+        uses: docker/login-action@v3
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build and push Docker image
-        uses: docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4
+        uses: docker/build-push-action@v5
         with:
           context: ./backend
           push: true

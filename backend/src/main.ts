@@ -5,6 +5,7 @@ import { Logger, ValidationPipe } from '@nestjs/common';
 import { json, urlencoded } from 'express';
 import configProvider from './config';
 import proxySetup from './ha-proxy';
+import { version } from '../package.json';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -28,7 +29,11 @@ async function bootstrap() {
   );
   await app.listen(configProvider().server.port);
   const logger = new Logger('bootstrap');
-  logger.log(`Started on port ${configProvider().server.port}`);
+  logger.log(
+    `DBStats version ${version} started on port ${
+      configProvider().server.port
+    }`,
+  );
   if (process.env.SUPERVISOR_TOKEN) {
     logger.log(`Wow, we're running on supervisor!`);
     //proxySetup();
