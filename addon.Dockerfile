@@ -14,6 +14,7 @@ RUN \
 # Copy root file system
 COPY rootfs /
 # Copy prebuilt app
+RUN mkdir -p /usr/src/app
 COPY --chown=node:node backend/* /usr/src/app
 COPY --chown=node:node frontend/* /var/www/html
 

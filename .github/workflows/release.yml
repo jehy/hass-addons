@@ -1,4 +1,4 @@
-name: Publish
+name: PublishDocker
 
 env:
   REGISTRY: ghcr.io
@@ -9,7 +9,7 @@ on:
     types: [published]
 jobs:
   release_db_stats_docker:
-    name: ReleaseDbStats
+    name: ReleaseDbStatsDocker
     runs-on: ubuntu-latest
     permissions:
       contents: read
