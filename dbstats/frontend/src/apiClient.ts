@@ -32,7 +32,7 @@ const getHeaders = () => {
 
 async function countEventTypes(): Promise<Array<ICountStats>> {
 
-    const url = `api/event/countEventTypes`;
+    const url = `/addon-api/event/countEventTypes`;
     const response = await fetch(url, {
         method: 'GET', // *GET, POST, PUT, DELETE, etc.
         headers: getHeaders(),
@@ -43,7 +43,7 @@ async function countEventTypes(): Promise<Array<ICountStats>> {
 
 async function countEventsByDomain(): Promise<Array<ICountStats>> {
 
-    const url = `/api/event/countEventsByDomain`;
+    const url = `/addon-api/event/countEventsByDomain`;
     const response = await fetch(url, {
         method: 'GET', // *GET, POST, PUT, DELETE, etc.
         headers: getHeaders(),
@@ -54,7 +54,7 @@ async function countEventsByDomain(): Promise<Array<ICountStats>> {
 
 async function countStates(): Promise<Array<ICountStats>> {
 
-    const url = `/api/state/countStates`;
+    const url = `/addon-api/state/countStates`;
     const response = await fetch(url, {
         method: 'GET', // *GET, POST, PUT, DELETE, etc.
         headers: getHeaders(),
@@ -64,7 +64,7 @@ async function countStates(): Promise<Array<ICountStats>> {
 }
 async function countAttributesSize(): Promise<Array<ICountStats>> {
 
-    const url = `/api/state/countAttributesSize`;
+    const url = `/addon-api/state/countAttributesSize`;
     const response = await fetch(url, {
         method: 'GET', // *GET, POST, PUT, DELETE, etc.
         headers: getHeaders(),
@@ -74,7 +74,7 @@ async function countAttributesSize(): Promise<Array<ICountStats>> {
 }
 async function countStatisticLong(): Promise<Array<ICountStats>> {
 
-    const url = `/api/statistic/long/count`;
+    const url = `/addon-api/statistic/long/count`;
     const response = await fetch(url, {
         method: 'GET', // *GET, POST, PUT, DELETE, etc.
         headers: getHeaders(),
@@ -85,7 +85,7 @@ async function countStatisticLong(): Promise<Array<ICountStats>> {
 
 async function countStatisticShort(): Promise<Array<ICountStats>> {
 
-    const url = `/api/statistic/short/count`;
+    const url = `/addon-api/statistic/short/count`;
     const response = await fetch(url, {
         method: 'GET', // *GET, POST, PUT, DELETE, etc.
         headers: getHeaders(),
@@ -96,7 +96,7 @@ async function countStatisticShort(): Promise<Array<ICountStats>> {
 
 async function getTableRows(): Promise<Array<ICountStats>> {
 
-    const url = `/api/system/getTableRows`;
+    const url = `/addon-api/system/getTableRows`;
     const response = await fetch(url, {
         method: 'GET', // *GET, POST, PUT, DELETE, etc.
         headers: getHeaders(),
@@ -107,7 +107,7 @@ async function getTableRows(): Promise<Array<ICountStats>> {
 
 async function getTableSize(): Promise<Array<ICountStats>> {
 
-    const url = `/api/system/getTableSize`;
+    const url = `/addon-api/system/getTableSize`;
     const response = await fetch(url, {
         method: 'GET', // *GET, POST, PUT, DELETE, etc.
         headers: getHeaders(),

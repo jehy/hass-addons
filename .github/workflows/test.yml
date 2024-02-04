@@ -13,26 +13,26 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Install shared deps
-        working-directory: ./shared
+        working-directory: ./dbstats/shared
         run: npm ci
       - name: Install backend deps
-        working-directory: ./backend
+        working-directory: ./dbstats/backend
         run: npm ci
       - name: Install frontend deps
-        working-directory: ./frontend
+        working-directory: ./dbstats/frontend
         run: npm ci
       - name: build front
-        working-directory: ./frontend
+        working-directory: ./dbstats/frontend
         run: npm run build
       - name: build back
-        working-directory: ./backend
+        working-directory: ./dbstats/backend
         run: npm run build
       - name: test backend
-        working-directory: ./backend
+        working-directory: ./dbstats/backend
         run: npm run test
       - name: lint backend
-        working-directory: ./backend
+        working-directory: ./dbstats/backend
         run: npm run lint
       - name: lint frontend
-        working-directory: ./frontend
+        working-directory: ./dbstats/frontend
         run: npm run lint

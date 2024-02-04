@@ -17,6 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Extract metadata (tags, labels) for Docker
+        working-directory: ./dbstats
         id: meta
         uses: docker/metadata-action@v5
         with:
@@ -30,37 +31,37 @@ jobs:
         with:
           node-version: 20.11.0
       - name: 'change backend version'
+        working-directory: ./dbstats
         uses: reedyuk/npm-version@1.2.2
         with:
           version: ${{github.ref_name}}
           package: './backend'
           git-tag-version: 'false'
       - name: 'change frontend  version'
+        working-directory: ./dbstats
         uses: reedyuk/npm-version@1.2.2
         with:
           version: ${{github.ref_name}}
           package: './frontend'
           git-tag-version: 'false'
       - name: Install shared deps
-        working-directory: ./shared
+        working-directory: ./dbstats/shared
         run: npm ci
       - name: Install backend deps
-        working-directory: ./backend
+        working-directory: ./dbstats/backend
         run: npm ci
       - name: build back
-        working-directory: ./backend
+        working-directory: ./dbstats/backend
         run: npm run build
       - name: clean back
-        working-directory: ./backend
+        working-directory: ./dbstats/backend
         run: npm  ci --omit=dev
       - name: Install frontend deps
-        working-directory: ./frontend
+        working-directory: ./dbstats/frontend
         run: npm ci
       - name: build front
-        working-directory: ./frontend
+        working-directory: ./dbstats/frontend
         run: npm run build
-      - name: copy front to back
-        run: cp frontend/build backend/dist/ -r
       - name: Log in to the Container registry
         uses: docker/login-action@v3
         with:
@@ -68,6 +69,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build and push Docker image
+        working-directory: ./dbstats
         uses: docker/build-push-action@v5
         with:
           context: .
