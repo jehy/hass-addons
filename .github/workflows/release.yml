@@ -66,10 +66,9 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build and push Docker image
-        working-directory: ./dbstats
         uses: docker/build-push-action@v5
         with:
-          context: .
+          context: ./dbstats
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
