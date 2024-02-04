@@ -17,7 +17,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Extract metadata (tags, labels) for Docker
-        working-directory: ./dbstats
         id: meta
         uses: docker/metadata-action@v5
         with:
@@ -31,18 +30,16 @@ jobs:
         with:
           node-version: 20.11.0
       - name: 'change backend version'
-        working-directory: ./dbstats
         uses: reedyuk/npm-version@1.2.2
         with:
           version: ${{github.ref_name}}
-          package: './backend'
+          package: './dbstats/backend'
           git-tag-version: 'false'
       - name: 'change frontend  version'
-        working-directory: ./dbstats
         uses: reedyuk/npm-version@1.2.2
         with:
           version: ${{github.ref_name}}
-          package: './frontend'
+          package: './dbstats/frontend'
           git-tag-version: 'false'
       - name: Install shared deps
         working-directory: ./dbstats/shared
