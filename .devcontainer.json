@@ -1,6 +1,6 @@
 {
-  "name": "Home Assistant dbstats add-on repository",
-  "image": "ghcr.io/jehy/hass-dbstats",
+  "name": "Example Home Assistant add-on repository",
+  "image": "ghcr.io/home-assistant/devcontainer:addons",
   "appPort": ["7123:8123", "7357:4357"],
   "postStartCommand": "bash devcontainer_bootstrap",
   "runArgs": ["-e", "GIT_EDITOR=code --wait", "--privileged"],

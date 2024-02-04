@@ -1,10 +1,10 @@
 ---
-name: Hass-DbStats
+name: DbStats
 version: dev
-slug: hass-dbstats
+slug: dbstats
 description: Database stats for Home Assistant
 image: ghcr.io/jehy/hass-dbstats-addon
-url: https://github.com/jehy/hass-dbstats
+url: https://github.com/jehy/hass-addons/dbstats/
 codenotary: fate@jehy.ru
 ingress: true
 ingress_port: 6060
