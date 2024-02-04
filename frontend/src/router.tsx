@@ -43,6 +43,10 @@ const routes: RouteObject[] = [
         path: '/',
         element: <Charts />
       },
+      {
+        path: '*',
+        element: <Status404 />
+      }
     ]
   },
 ];
