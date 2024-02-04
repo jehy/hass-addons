@@ -25,7 +25,7 @@ import { SystemModule } from './system/system.module';
     StatisticModule,
     SystemModule,
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '../../', 'build'),
+      rootPath: '/var/www/html',
     }),
   ],
   exports: [DatabaseModule],
