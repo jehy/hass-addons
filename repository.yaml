@@ -1,4 +1,4 @@
 # https://developers.home-assistant.io/docs/add-ons/repository#repository-configuration
-name: Home Assistant dbstats add-on repository
-url: 'https://github.com/jehy/hass-dbstats'
+name: Jehy's Home Assistant add-on repository
+url: 'https://github.com/jehy/hass-addons'
 maintainer: Jehy <fate@jehy.ru>
