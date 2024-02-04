@@ -7,7 +7,7 @@ ingress_entry=$(bashio::addon.ingress_entry)
 ingress_interface=$(bashio::addon.ip_address)
 dns_host=$(bashio::dns.host)
 
-[[ $ingress_entry =~ ^/(.*)/$ ]] && ingress_entry=${BASH_REMATCH[1]} #Remove slashes from both sides
+[[ $ingress_entry =~ ^/(.*)$ ]] && ingress_entry=${BASH_REMATCH[1]} #Remove slashes from both sides
 
 # Retrieve the ingress_entry query path so that nginx can perform rewrites accordingly
 sed -i "s#%%ingress_entry%%#${ingress_entry}#g" /etc/nginx/nginx.conf
