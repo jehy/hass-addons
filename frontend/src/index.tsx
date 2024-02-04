@@ -15,7 +15,7 @@ ReactDOM.render(
       </BrowserRouter>
     </SidebarProvider>
   </HelmetProvider>,
-  document.getElementById('root')
+  document.getElementById('dbStatsRoot')
 );
 
 serviceWorker.unregister();
