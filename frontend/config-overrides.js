@@ -23,12 +23,12 @@ const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin')
 const StyleExtHtmlWebpackPlugin = require('style-ext-html-webpack-plugin')
 
 module.exports = function override(config, env) {
-    if (env === 'production') {
+    //if (env === 'production') {
         config.plugins.push(new ScriptExtHtmlWebpackPlugin({
             defaultAttribute: 'defer',
             inline: /.+[.]js/
         }))
         config.plugins.push(new StyleExtHtmlWebpackPlugin())
-    }
+    //}
     return config
 }
