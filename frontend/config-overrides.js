@@ -26,7 +26,6 @@ module.exports = function override(config, env) {
     if (env === 'production') {
         config.plugins.push(new ScriptExtHtmlWebpackPlugin({
             inline: /.+[.]js/,
-            module: /.+[.]js/,
         }))
         config.plugins.push(new StyleExtHtmlWebpackPlugin())
     }
