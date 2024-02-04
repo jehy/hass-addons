@@ -44,6 +44,10 @@ const routes: RouteObject[] = [
         element: <Charts />
       },
       {
+        path: '/hassio_ingress/*/',
+        element: <Charts />
+      },
+      {
         path: '*',
         element: <Status404 />
       }
