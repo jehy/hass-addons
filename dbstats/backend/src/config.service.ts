@@ -284,7 +284,9 @@ postgresql://@/DB_NAME?host=/path/to/dir
     this.logger.log(
       `recorder options not found, gonna try standard database path`,
     );
-    const sqliteFileName = path.join(haHomeDir, '/home-assistant_v2.db');
+    const sqliteFileName = path.resolve(
+      path.join(haHomeDir, '/home-assistant_v2.db'),
+    );
     if (!fs.existsSync(sqliteFileName)) {
       throw new Error(`SQLite database file not found in ${sqliteFileName}`);
     }
