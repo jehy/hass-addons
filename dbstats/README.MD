@@ -16,6 +16,8 @@ This addon allows to check database usafe and find out what's eating up your spa
 
 Web page with report will look like [this](screen.png).
 
+Addon will try to autodetect your database options, but if it fails, you can use configuration page and add `connectionString` manually.
+
 
 ## Installation on HAOS/supervised
 1. Navigate to addons page on your HA instalaiton
