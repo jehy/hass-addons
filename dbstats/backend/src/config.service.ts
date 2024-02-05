@@ -290,7 +290,9 @@ postgresql://@/DB_NAME?host=/path/to/dir
     if (!fs.existsSync(sqliteFileName)) {
       throw new Error(`SQLite database file not found in ${sqliteFileName}`);
     }
-    this.logger.log(`Found standard sqlite file, gonna use it`);
+    this.logger.log(
+      `Found standard sqlite file, gonna use it: ${sqliteFileName}`,
+    );
     return ConfigService.connectionStringToDatabaseOptions(
       `sqlite://${sqliteFileName}`,
     );
