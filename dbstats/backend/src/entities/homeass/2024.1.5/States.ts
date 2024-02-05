@@ -25,13 +25,13 @@ export class States {
   @PrimaryGeneratedColumn({ type: 'integer', name: 'state_id' })
   stateId: number;
 
-  @Column('character', { name: 'entity_id', nullable: true, length: 1 })
+  @Column({ name: 'entity_id', nullable: true, length: 1 })
   entityId: string | null;
 
   @Column({ name: 'state', nullable: true, length: 255 })
   state: string | null;
 
-  @Column('character', { name: 'attributes', nullable: true, length: 1 })
+  @Column({ name: 'attributes', nullable: true, length: 1 })
   attributes: string | null;
 
   @Column('smallint', { name: 'event_id', nullable: true })
@@ -63,13 +63,13 @@ export class States {
   @Column('integer', { name: 'attributes_id', nullable: true })
   attributesId: number | null;
 
-  @Column('character', { name: 'context_id', nullable: true, length: 1 })
+  @Column({ name: 'context_id', nullable: true, length: 1 })
   contextId: string | null;
 
-  @Column('character', { name: 'context_user_id', nullable: true, length: 1 })
+  @Column({ name: 'context_user_id', nullable: true, length: 1 })
   contextUserId: string | null;
 
-  @Column('character', { name: 'context_parent_id', nullable: true, length: 1 })
+  @Column({ name: 'context_parent_id', nullable: true, length: 1 })
   contextParentId: string | null;
 
   @Column('smallint', { name: 'origin_idx', nullable: true })

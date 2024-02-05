@@ -23,13 +23,13 @@ export class Events {
   @PrimaryGeneratedColumn({ type: 'integer', name: 'event_id' })
   eventId: number;
 
-  @Column('character', { name: 'event_type', nullable: true, length: 1 })
+  @Column({ name: 'event_type', nullable: true, length: 1 })
   eventType: string | null;
 
-  @Column('character', { name: 'event_data', nullable: true, length: 1 })
+  @Column({ name: 'event_data', nullable: true, length: 1 })
   eventData: string | null;
 
-  @Column('character', { name: 'origin', nullable: true, length: 1 })
+  @Column({ name: 'origin', nullable: true, length: 1 })
   origin: string | null;
 
   @Column('smallint', { name: 'origin_idx', nullable: true })
@@ -45,13 +45,13 @@ export class Events {
   })
   timeFiredTs: number | null;
 
-  @Column('character', { name: 'context_id', nullable: true, length: 1 })
+  @Column({ name: 'context_id', nullable: true, length: 1 })
   contextId: string | null;
 
-  @Column('character', { name: 'context_user_id', nullable: true, length: 1 })
+  @Column({ name: 'context_user_id', nullable: true, length: 1 })
   contextUserId: string | null;
 
-  @Column('character', { name: 'context_parent_id', nullable: true, length: 1 })
+  @Column({ name: 'context_parent_id', nullable: true, length: 1 })
   contextParentId: string | null;
 
   @Column('integer', { name: 'data_id', nullable: true })
