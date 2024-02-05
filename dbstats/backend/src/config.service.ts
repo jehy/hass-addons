@@ -146,9 +146,14 @@ postgresql://@/DB_NAME?host=/path/to/dir
       //const tmpFile = '/tmp/copy.db';
       const tmpFileRecovered = '/tmp/copy.recovered.db';
       //childProcess.execSync(`cp ${database} ${tmpFile}`);
+      try{
       childProcess.execSync(
-        `sqlite3 ${database} ".recover" | sqlite3 ${tmpFileRecovered}`,
-      );
+        `sqlite3 ${database} ".clone" | sqlite3 ${tmpFileRecovered}`,
+      ); }
+      catch(err){
+        console.log(err);
+        childProcess.execSync(`sqlite3 ${database} | sqlite3 ${tmpFileRecovered}`);
+      }
       const options: SqliteConnectionOptions = {
         type: 'sqlite',
         database: tmpFileRecovered,
