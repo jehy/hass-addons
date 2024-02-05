@@ -1,31 +1,3 @@
----
-name: DbStats
-version: dev
-slug: dbstats
-description: Database stats for Home Assistant
-image: ghcr.io/jehy/hass-dbstats-addon
-url: https://github.com/jehy/hass-addons/dbstats/
-codenotary: fate@jehy.ru
-ingress: true
-ingress_port: 6060
-ingress_stream: true
-panel_icon: mdi:database
-init: false
-homeassistant: 2022.1.1
-hassio_api: true
-arch:
-  - armhf
-  - armv7
-  - aarch64
-  - amd64
-  - i386
-ports:
-  80/tcp: 6060
-ports_description:
-  80/tcp: Web interface
-map:
-  - homeassistant_config:ro
----
 name: DbStats
 version: stable
 slug: dbstats
