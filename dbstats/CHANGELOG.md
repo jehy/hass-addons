@@ -1,5 +1,9 @@
 # Changelog
 
-## 0.0.8
+## 0.3.5
 
-- Internal release
+- Change config loader, support `!include`
+
+## 0.3.4
+
+- First stable public release

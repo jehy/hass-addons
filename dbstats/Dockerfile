@@ -15,8 +15,8 @@ RUN apk update \
 # Copy root file system
 COPY rootfs /
 
-COPY --from=ghcr.io/jehy/hass-dbstats:0.2.44 /usr/src/app /usr/src/app
-COPY --from=ghcr.io/jehy/hass-dbstats:0.2.44 /var/www/html /var/www/html
+COPY --from=ghcr.io/jehy/hass-dbstats:0.2.45 /usr/src/app /usr/src/app
+COPY --from=ghcr.io/jehy/hass-dbstats:0.2.45 /var/www/html /var/www/html
 WORKDIR /usr/src/app
 RUN npm ci --omit=dev ## need to reinstall deps because they can be binary incompatible
 
