@@ -143,11 +143,11 @@ postgresql://@/DB_NAME?host=/path/to/dir
       // https://www.sqlite.org/c3ref/c_open_autoproxy.html
       // #define SQLITE_OPEN_READONLY         0x00000001  /* Ok for sqlite3_open_v2() */
       const database = dbConnectString.split('://')[1];
-      const tmpFile = '/tmp/copy.db';
+      //const tmpFile = '/tmp/copy.db';
       const tmpFileRecovered = '/tmp/copy.recovered.db';
-      childProcess.execSync(`cp ${database} ${tmpFile}`);
+      //childProcess.execSync(`cp ${database} ${tmpFile}`);
       childProcess.execSync(
-        `sqlite3 ${tmpFile} ".recover" | sqlite3 ${tmpFileRecovered}`,
+        `sqlite3 ${database} ".recover" | sqlite3 ${tmpFileRecovered}`,
       );
       const options: SqliteConnectionOptions = {
         type: 'sqlite',
