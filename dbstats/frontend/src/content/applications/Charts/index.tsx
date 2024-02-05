@@ -35,6 +35,7 @@ function DatabaseStats() {
                         <Card style={{marginTop: 5}}>
                             <CardHeader title="Generic database stats"></CardHeader>
                             <CardContent>
+                                <Alert severity="info">If you're using sqlite and updated you database, you'll have to restart addon to reflect changes.</Alert>
                                 <CountStatsChart api={apiClient.system.getTableRows}
                                                  title="Number of rows in tables"/>
                             </CardContent>
