@@ -2,7 +2,7 @@ name: PublishAddon
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}-addon
+  IMAGE_NAME: hass-dbstats-addon
 
 on:
   release:
