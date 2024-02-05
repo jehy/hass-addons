@@ -9,8 +9,6 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN \
     apk add --no-cache \
         nginx=1.24.0-r15 \
-    apk add --no-cache \
-        sqlite=3.45.0-r0 \
     && rm -f -r /etc/nginx
 
 # Copy root file system
