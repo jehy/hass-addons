@@ -18,7 +18,7 @@ Web page with report will look like [this](screen.png).
 
 
 ## Installation on HAOS/supervised
-1. Naviage to addons page on your HA instalaiton
+1. Navigate to addons page on your HA instalaiton
 2. Press three dots in the top right corner
 3. Add repository `https://github.com/jehy/hass-addons` to addon repositories
 4. Install addon from addons page
