@@ -25,23 +25,3 @@ Web page with report will look like [this](screen.png).
 5. Start addon and visit it's page
 
 ## Using without supervisor or HAOS:
-You can use this addon standalone. To do it, just launch it with docker with the following compose file:
-
-```yaml
-version: '3.9'
-
-services:  
-
-  hass-dbstats:
-    container_name: dbstats
-    image: "ghcr.io/jehy/hass-dbstats:latest"
-    restart: unless-stopped
-    ports:
-      - "3000:3000"
-    environment:
-      - TZ=Europe/Moscow
-      - DB_CONNECT_STRING=postgresql://LOGIN:PASSWORD@172.17.0.1:5432/DATABASE
-    volumes:
-      - hass_config:/homeassistant:ro
-```
-Please not that you should **either** pass **DB_CONNECT_STRING** or set volume `/homeassistant` to the location of where your config file resides.
