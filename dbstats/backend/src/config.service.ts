@@ -129,9 +129,11 @@ postgresql://@/DB_NAME?host=/path/to/dir
     if (dbType === 'sqlite') {
       // https://www.sqlite.org/c3ref/c_open_autoproxy.html
       // #define SQLITE_OPEN_READONLY         0x00000001  /* Ok for sqlite3_open_v2() */
+      const database = dbConnectString.split('://')[1];
+      fs.writeFileSync('/tmp/copy.sqlite', fs.readFileSync(database));
       const options: SqliteConnectionOptions = {
         type: 'sqlite',
-        database: dbConnectString.split('://')[1],
+        database,
         //flags: 0x00000001,
       };
       return options;
