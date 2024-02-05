@@ -151,7 +151,7 @@ postgresql://@/DB_NAME?host=/path/to/dir
       childProcess.execSync(`sqlite3 ${database} ".clone ${tmpFileRecovered}"`);
       const options: SqliteConnectionOptions = {
         type: 'sqlite',
-        database, //: tmpFileRecovered,
+        database: tmpFileRecovered,
         //flags: 0x00000001,
       };
       return options;
