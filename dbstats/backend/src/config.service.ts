@@ -144,17 +144,17 @@ postgresql://@/DB_NAME?host=/path/to/dir
       // #define SQLITE_OPEN_READONLY         0x00000001  /* Ok for sqlite3_open_v2() */
       const database = dbConnectString.split('://')[1];
       //const tmpFile = '/tmp/copy.db';
-      const tmpFileRecovered = '/tmp/copy.recovered.db';
+      //const tmpFileRecovered = '/tmp/copy.recovered.db';
       //childProcess.execSync(`cp ${database} ${tmpFile}`);
       //        childProcess.execSync(
       //        `sqlite3 ${database} ".clone" | sqlite3 ${tmpFileRecovered}`,
-      childProcess.execSync(
-        `sqlite3 ${database} ".clone ${tmpFileRecovered}"`,
-      );
+      //childProcess.execSync(
+      //  `sqlite3 ${database} ".clone ${tmpFileRecovered}"`,
+      //);
       const options: SqliteConnectionOptions = {
         type: 'sqlite',
-        database: tmpFileRecovered,
-        flags: 0x00000001,
+        database, //: tmpFileRecovered,
+        //flags: 0x00000001,
       };
       return options;
     }

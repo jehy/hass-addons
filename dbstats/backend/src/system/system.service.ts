@@ -59,7 +59,7 @@ export class SystemService {
       const res = [];
       for (let i = 0; i < tables.length; i++) {
         const rows = (await this.repoLong.manager.query(
-          `SELECT SUM("pgsize") FROM "dbstat" WHERE name=' ${tables[i]}';`,
+          `SELECT SUM("pgsize") FROM "dbstat" WHERE name='${tables[i]}';`,
         )) as Array<{ cnt: number }>;
         res.push({ type: tables[i], cnt: rows[0].cnt });
       }
