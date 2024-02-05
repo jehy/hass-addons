@@ -6,8 +6,9 @@ FROM ${BUILD_FROM}
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # Install requirements for add-on
-RUN \
-    apk add --no-cache \
+RUN apk update \
+    && apk add sqlite \
+    && apk add --no-cache \
         nginx=1.24.0-r15 \
     && rm -f -r /etc/nginx
 
