@@ -6,6 +6,19 @@ import { Injectable, Logger } from '@nestjs/common';
 import type { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
 import type { SqliteConnectionOptions } from 'typeorm/driver/sqlite/SqliteConnectionOptions';
 import type { MysqlConnectionOptions } from 'typeorm/driver/mysql/MysqlConnectionOptions';
+import * as util from 'util';
+import * as childProcess from 'child_process';
+const exec = util.promisify(childProcess.exec);
+
+async function execPromise(command: string) {
+  try {
+    const { stdout, stderr } = await exec(command);
+    console.log('stdout:', stdout);
+    console.log('stderr:', stderr);
+  } catch (e) {
+    console.error(e); // should contain code (exit code) and signal (that caused the termination).
+  }
+}
 
 type DBType = DataSourceOptions['type'];
 
@@ -130,11 +143,15 @@ postgresql://@/DB_NAME?host=/path/to/dir
       // https://www.sqlite.org/c3ref/c_open_autoproxy.html
       // #define SQLITE_OPEN_READONLY         0x00000001  /* Ok for sqlite3_open_v2() */
       const database = dbConnectString.split('://')[1];
-      const tmpFile = '/tmp/copy.sqlite'
-      fs.writeFileSync(tmpFile, fs.readFileSync(database));
+      const tmpFile = '/tmp/copy.db';
+      const tmpFileRecovered = '/tmp/copy.recovered.db';
+      childProcess.execSync(`cp ${database} ${tmpFile}`);
+      childProcess.execSync(
+        `sqlite ${tmpFile} ".recover" | sqlite ${tmpFileRecovered}`,
+      );
       const options: SqliteConnectionOptions = {
         type: 'sqlite',
-        database: tmpFile,
+        database: tmpFileRecovered,
         flags: 0x00000001,
       };
       return options;
