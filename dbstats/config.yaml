@@ -1,5 +1,5 @@
 name: DbStats
-version: 0.4.0
+version: 0.4.1
 slug: dbstats
 description: Database stats for Home Assistant
 image: ghcr.io/jehy/hass-dbstats-addon
@@ -14,6 +14,8 @@ homeassistant: 2022.1.1
 hassio_api: true
 options:
   connectionString: ""
+schema:
+  connectionString: str
 arch:
   - armhf
   - armv7

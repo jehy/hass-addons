@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.1
+
+- Add options schema
+
 ## 0.4.0
 
 - Ignore non valid YAML
