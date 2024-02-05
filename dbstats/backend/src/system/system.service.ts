@@ -21,7 +21,7 @@ export class SystemService {
   async getTableRows(): Promise<Array<ICountStats>> {
     //select m.entity_id, count(1) from states s, states_meta m where s.metadata_id=m.metadata_id group by m.entity_id
     const dbType = configProvider().typeOrmConfig.type;
-    if (dbType === 'sqlite') {
+    /*if (dbType === 'sqlite') {
       const tables = await this.getSqliteTables();
       const res = [];
       for (let i = 0; i < tables.length; i++) {
@@ -31,7 +31,7 @@ export class SystemService {
         res.push({ type: tables[i], cnt: rows[0].cnt });
       }
       return res;
-    }
+    }*/
     if (dbType === 'postgres') {
       const data = await this.repoLong.manager
         .query(`SELECT relname type,n_live_tup cnt
@@ -54,7 +54,7 @@ export class SystemService {
   async getTableSize(): Promise<Array<ICountStats>> {
     //select m.entity_id, count(1) from states s, states_meta m where s.metadata_id=m.metadata_id group by m.entity_id
     const dbType = configProvider().typeOrmConfig.type;
-    if (dbType === 'sqlite') {
+    /*if (dbType === 'sqlite') {
       const tables = await this.getSqliteTables();
       const res = [];
       for (let i = 0; i < tables.length; i++) {
@@ -64,7 +64,7 @@ export class SystemService {
         res.push({ type: tables[i], cnt: rows[0].cnt });
       }
       return res;
-    }
+    }*/
     if (dbType === 'postgres') {
       const data = await this.repoLong.manager.query(`select
         table_name type,
