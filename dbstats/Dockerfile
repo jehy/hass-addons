@@ -1,19 +1,57 @@
-# App should be already built built at tis moment locally or via github actions
-FROM node:20.11.0-alpine
+ARG BUILD_FROM=ghcr.io/hassio-addons/base-nodejs:0.1.3
+# hadolint ignore=DL3006
+FROM ${BUILD_FROM}
 
-# Create app directory
+# Set shell
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
+# Install requirements for add-on
+RUN apk update \
+    && apk add sqlite \
+    && apk add --no-cache \
+        nginx=1.24.0-r15 \
+    && rm -f -r /etc/nginx
+
+# Copy root file system
+COPY rootfs /
+
+COPY --from=jehy/hass-dbstats:0.2.43:latest /usr/src/app /usr/src/app
+COPY --from=jehy/hass-dbstats:0.2.43:latest /var/www/html /var/www/html
 WORKDIR /usr/src/app
+RUN npm ci ## need to reinstall deps because they can be binary incompatible
 
-# Use the node user from the image (instead of the root user)
-USER node
-
-COPY --chown=node:node ./backend /usr/src/app
-COPY --chown=node:node ./frontend/build /var/www/html
+# Build arguments
+ARG BUILD_ARCH
+ARG BUILD_DATE
+ARG BUILD_DESCRIPTION
+ARG BUILD_NAME
+ARG BUILD_REF
+ARG BUILD_REPOSITORY
+ARG BUILD_VERSION
 
 # Set NODE_ENV environment variable
 ENV NODE_ENV production
 
-EXPOSE 3000
+# Labels
+LABEL \
+    io.hass.name="${BUILD_NAME}" \
+    io.hass.description="${BUILD_DESCRIPTION}" \
+    io.hass.arch="${BUILD_ARCH}" \
+    io.hass.type="addon" \
+    io.hass.version=${BUILD_VERSION} \
+    maintainer="Jehy" \
+    org.opencontainers.image.title="${BUILD_NAME}" \
+    org.opencontainers.image.description="${BUILD_DESCRIPTION}" \
+    org.opencontainers.image.vendor="Jehy" \
+    org.opencontainers.image.authors="Jehy" \
+    org.opencontainers.image.licenses="MIT" \
+    org.opencontainers.image.url="https://jehy.ru" \
+    org.opencontainers.image.source="https://github.com/${BUILD_REPOSITORY}" \
+    org.opencontainers.image.documentation="https://github.com/${BUILD_REPOSITORY}/blob/main/README.md" \
+    org.opencontainers.image.created=${BUILD_DATE} \
+    org.opencontainers.image.revision=${BUILD_REF} \
+    org.opencontainers.image.version=${BUILD_VERSION}
 
-# Start the server using the production build
-CMD [ "node", "dist/backend/src/main.js" ]
+
+EXPOSE 3000
+EXPOSE 6060

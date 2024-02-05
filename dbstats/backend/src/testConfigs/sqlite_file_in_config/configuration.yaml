@@ -1,3 +1,0 @@
-recorder:
-  purge_keep_days: 30
-  db_url: sqlite://renamed.db

@@ -1,8 +1,0 @@
-{
-  "compilerOptions": {
-    "paths": {
-      "@dbstats/shared/*": ["../shared/*"]
-    }
-  },
-  "include": ["./src", "../shared", "jest.config.ts", "tsconfig.json", "test", "package.json"]
-}
