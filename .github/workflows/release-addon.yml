@@ -25,10 +25,10 @@ jobs:
             type=semver,pattern={{major}}.{{minor}}.{{patch}}
             type=semver,pattern={{major}}
             type=raw,value=stable
-      - name: Use Node.js 20.11.0
+      - name: Use Node.js 18.19.0
         uses: actions/setup-node@v4
         with:
-          node-version: 20.11.0
+          node-version: 18.19.0
       - name: 'change backend version'
         uses: reedyuk/npm-version@1.2.2
         with:
