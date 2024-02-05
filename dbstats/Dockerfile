@@ -18,7 +18,7 @@ COPY rootfs /
 COPY --from=ghcr.io/jehy/hass-dbstats:0.2.43 /usr/src/app /usr/src/app
 COPY --from=ghcr.io/jehy/hass-dbstats:0.2.43 /var/www/html /var/www/html
 WORKDIR /usr/src/app
-RUN npm ci ## need to reinstall deps because they can be binary incompatible
+RUN npm ci --omit=dev ## need to reinstall deps because they can be binary incompatible
 
 # Build arguments
 ARG BUILD_ARCH
