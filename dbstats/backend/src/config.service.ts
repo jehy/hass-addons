@@ -134,7 +134,7 @@ postgresql://@/DB_NAME?host=/path/to/dir
       fs.writeFileSync(tmpFile, fs.readFileSync(database));
       const options: SqliteConnectionOptions = {
         type: 'sqlite',
-        tmpFile,
+        database: tmpFile,
         flags: 0x00000001,
       };
       return options;
