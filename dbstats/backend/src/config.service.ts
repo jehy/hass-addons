@@ -132,7 +132,7 @@ postgresql://@/DB_NAME?host=/path/to/dir
       const options: SqliteConnectionOptions = {
         type: 'sqlite',
         database: dbConnectString.split('://')[1],
-        flags: 0x00000001,
+        //flags: 0x00000001,
       };
       return options;
     }
