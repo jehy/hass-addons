@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.7
+
+- Fix handling multiple secrets
+
 ## 0.3.6
 
 - Fix failure when folder or file from config does not exist
