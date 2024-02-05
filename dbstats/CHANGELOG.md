@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.4.0
+
+- Ignore non valid YAML
+- Use connection string from options if provided
+
 ## 0.3.7
 
 - Fix handling multiple secrets
