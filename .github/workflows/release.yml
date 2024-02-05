@@ -25,7 +25,7 @@ jobs:
           tags: |
             type=semver,pattern={{major}}.{{minor}}.{{patch}}
             type=semver,pattern={{major}}
-            type=raw,value=dev
+            type=raw,value=stable
       - name: Use Node.js 20.11.0
         uses: actions/setup-node@v4
         with:
