@@ -25,3 +25,5 @@ Web page with report will look like [this](screen.png).
 5. Start addon and visit it's page
 
 ## Using without supervisor or HAOS:
+
+You can read about it [here](https://github.com/jehy/hass-dbstats).
