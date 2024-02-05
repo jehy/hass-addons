@@ -18,6 +18,8 @@ COPY rootfs /
 RUN mkdir -p /usr/src/app
 RUN mkdir -p /var/www/html
 COPY ./backend /usr/src/app
+WORKDIR /usr/src/app
+RUN npm ci
 COPY ./frontend/build /var/www/html
 
 # Build arguments
