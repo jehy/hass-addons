@@ -1,6 +1,6 @@
 import {
     Card,
-    useTheme, Alert, Grid, CardContent, CardHeader
+    useTheme, Alert, Grid, CardContent, CardHeader, Link
 } from '@mui/material';
 import * as React from "react";
 import apiClient from "../../../apiClient";
@@ -10,6 +10,7 @@ import PageTitle from "../../../components/PageTitle";
 import Container from "@mui/material/Container";
 import Footer from "../../../components/Footer";
 import {CountStatsChart} from "../../../components/Charts/CountStatsChart";
+import {AlertSet} from "../../../components/AlertSet/AlertSet";
 
 
 function DatabaseStats() {
@@ -34,8 +35,10 @@ function DatabaseStats() {
                     <Grid item xs={12}>
                         <Card style={{marginTop: 5}}>
                             <CardHeader title="Generic database stats"></CardHeader>
+                            <Alert severity="info">If you are unfamilar with HA tables, you can read about them <Link href="https://data.home-assistant.io/docs/data">here</Link></Alert>
+                            <AlertSet api={apiClient.system.getDbAlerts}></AlertSet>
                             <CardContent>
-                                <Alert severity="info">If you're using sqlite and updated you database, you'll have to restart addon to reflect changes.</Alert>
+                                <Alert severity="info"></Alert>
                                 <CountStatsChart api={apiClient.system.getTableRows}
                                                  title="Number of rows in tables"/>
                             </CardContent>

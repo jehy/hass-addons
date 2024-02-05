@@ -14,4 +14,8 @@ export class SystemController {
   async getTableSize() {
     return this.systemService.getTableSize();
   }
+  @Get('getDbAlerts')
+  async getDbAlerts() {
+    return this.systemService.getDbAlerts();
+  }
 }

@@ -37,14 +37,14 @@ const StatusMaintenance = Loader(
 const routes: RouteObject[] = [
   {
     path: '',
-    element: <SidebarLayout />,
+    element: <BaseLayout />,
     children: [
       {
         path: '/',
         element: <Charts />
       },
       {
-        path: '/hassio_ingress/*/',
+        path: '/api/hassio_ingress/*',
         element: <Charts />
       },
       {

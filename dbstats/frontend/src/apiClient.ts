@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import type {ICountStats} from "@dbstats/shared/src/stats";
+import type {ICountStats, IShowAlerts} from "@dbstats/shared/src/stats";
 
 import pLimit from 'p-limit';
 
@@ -116,6 +116,17 @@ async function getTableSize(): Promise<Array<ICountStats>> {
     return response.json();
 }
 
+async function getDbAlerts(): Promise<Array<IShowAlerts>> {
+
+    const url = `/addon-api/system/gettDbAlerts`;
+    const response = await fetch(url, {
+        method: 'GET', // *GET, POST, PUT, DELETE, etc.
+        headers: getHeaders(),
+    });
+    await checkResponse(response);
+    return response.json();
+}
+
 
 const limitMe = pLimit(2);
 export default {
@@ -132,6 +143,7 @@ export default {
         countShort: ()=>limitMe(countStatisticShort)
     }, system: {
         getTableSize:()=>limitMe(getTableSize),
-        getTableRows: ()=>limitMe(getTableRows)
+        getTableRows: ()=>limitMe(getTableRows),
+        getDbAlerts: ()=>limitMe(getDbAlerts),
     }
 }

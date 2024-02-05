@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import type { ICountStats } from '@dbstats/shared/src/stats';
+import type { ICountStats, IShowAlerts } from '@dbstats/shared/src/stats';
 import { Statistics } from '../entities/homeass/2024.1.5/Statistics';
 import configProvider from '../config';
 
@@ -26,7 +26,7 @@ export class SystemService {
       const res = [];
       for (let i = 0; i < tables.length; i++) {
         const rows = (await this.repoLong.manager.query(
-          `SELECT count (*) cnt from ${tables[i]}`,
+          `SELECT count (*) cnt from ${tables[i].name}`,
         )) as Array<{ cnt: number }>;
         res.push({ type: tables[i], cnt: rows[0].cnt });
       }
@@ -59,7 +59,7 @@ export class SystemService {
       const res = [];
       for (let i = 0; i < tables.length; i++) {
         const rows = (await this.repoLong.manager.query(
-          `SELECT SUM("pgsize") FROM "dbstat" WHERE name='${tables[i]}';`,
+          `SELECT SUM("pgsize") cnt FROM "dbstat" WHERE name='${tables[i].name}';`,
         )) as Array<{ cnt: number }>;
         res.push({ type: tables[i], cnt: rows[0].cnt });
       }
@@ -87,5 +87,17 @@ ORDER BY (data_length + index_length) DESC;`);
     throw new BadRequestException(
       `Database type ${dbType} not supported yet for this chart`,
     );
+  }
+
+  async getDbAlerts(): Promise<Array<IShowAlerts>> {
+    const alerts: Array<IShowAlerts> = [];
+    const dbType = configProvider().typeOrmConfig.type;
+    if (dbType === 'sqlite') {
+      alerts.push({
+        type: 'info',
+        text: `If you're using sqlite and updated you database, you'll have to restart addon to reflect changes`,
+      });
+    }
+    return alerts;
   }
 }
