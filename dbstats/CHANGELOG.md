@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.2
+
+- Add sorting and fix MB calculation for sqlite
+
 ## 0.4.1
 
 - Add options schema
