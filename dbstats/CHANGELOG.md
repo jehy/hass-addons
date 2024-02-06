@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.4
+
+- UI improvements
+
 ## 0.4.3
 
 - Add sorting and fix MB calculation for sqlite
