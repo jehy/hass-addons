@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.6
+
+- Fix loading named config
+
 ## 0.4.5
 
 - UI improvements
