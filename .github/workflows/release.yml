@@ -39,6 +39,7 @@ jobs:
             --armv7 \
             --amd64 \
             --aarch64 \
+            --image "dbstats-addon-{arch}" \
             --target dbstats \
             --additional-tag stable \
             --additional-tag ${{ github.event.release.tag_name}}
