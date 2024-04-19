@@ -41,7 +41,7 @@ jobs:
             --aarch64 \
             --target dbstats \
             --docker-hub hass-dbstats \
-            --release-tag ${{ env.IMAGE_NAME}} \
+            --release-tag ${{ github.event.release.tag_name}} \
             --additional-tag stable
 
 #      - name: Build and push Docker image
