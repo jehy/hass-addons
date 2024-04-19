@@ -17,11 +17,9 @@ options:
 schema:
   connectionString: str
 arch:
-  - armhf
-  - armv7
   - aarch64
   - amd64
-  - i386
+  - armv7
 ports:
   80/tcp: 6060
 ports_description:

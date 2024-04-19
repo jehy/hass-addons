@@ -31,10 +31,24 @@ jobs:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v5
+
+      - name: Publish
+        uses: home-assistant/builder@master
         with:
-          context: ./dbstats
-          push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          args: |
+            --armv7 \
+            --amd64 \
+            --aarch64 \
+            --target dbstats \
+            --docker-hub hass-dbstats \
+            --release-tag ${{ steps.meta.outputs.tags[0] }} \
+            --additional-tag ${{ steps.meta.outputs.tags[1] }} \
+            --additional-tag ${{ steps.meta.outputs.tags[2] }} \
+
+#      - name: Build and push Docker image
+#        uses: docker/build-push-action@v5
+#        with:
+#          context: ./dbstats
+#          push: true
+#          tags: ${{ steps.meta.outputs.tags }}
+#          labels: ${{ steps.meta.outputs.labels }}
