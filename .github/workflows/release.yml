@@ -41,9 +41,8 @@ jobs:
             --aarch64 \
             --target dbstats \
             --docker-hub hass-dbstats \
-            --release-tag ${{ steps.meta.outputs.tags[0] }} \
-            --additional-tag ${{ steps.meta.outputs.tags[1] }} \
-            --additional-tag ${{ steps.meta.outputs.tags[2] }} \
+            --release-tag ${{ env.IMAGE_NAME}} \
+            --additional-tag stable
 
 #      - name: Build and push Docker image
 #        uses: docker/build-push-action@v5
