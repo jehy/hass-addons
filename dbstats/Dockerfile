@@ -7,6 +7,11 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # Install requirements for add-on
 RUN apk update \
+    && apk add --no-cache --virtual .build-dependencies \
+            build-base=0.5-r3 \
+            linux-headers=6.5-r0 \
+            py3-pip=23.3.1-r0 \
+            python3-dev=3.11.9-r0 \
     && apk add sqlite \
     && apk add --no-cache \
         nginx=1.24.0-r15 \
@@ -15,8 +20,8 @@ RUN apk update \
 # Copy root file system
 COPY rootfs /
 
-COPY --from=ghcr.io/jehy/hass-dbstats:0.3.6 /usr/src/app /usr/src/app
-COPY --from=ghcr.io/jehy/hass-dbstats:0.3.6 /var/www/html /var/www/html
+COPY --from=ghcr.io/jehy/hass-dbstats:0.3.8 /usr/src/app /usr/src/app
+COPY --from=ghcr.io/jehy/hass-dbstats:0.3.8 /var/www/html /var/www/html
 WORKDIR /usr/src/app
 RUN npm ci --omit=dev ## need to reinstall deps because they can be binary incompatible
 

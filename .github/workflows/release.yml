@@ -41,8 +41,7 @@ jobs:
             --aarch64 \
             --image "dbstats-addon-{arch}" \
             --target dbstats \
-            --additional-tag stable \
-            --additional-tag ${{ github.event.release.tag_name}}
+            --additional-tag stable
 
 #      - name: Build and push Docker image
 #        uses: docker/build-push-action@v5

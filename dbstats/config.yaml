@@ -1,8 +1,8 @@
 name: DbStats
-version: 0.4.6
+version: 0.5.0
 slug: dbstats
 description: Database stats for Home Assistant
-image: ghcr.io/jehy/hass-dbstats-addon
+image: ghcr.io/jehy/hass-dbstats-addon-{arch}
 url: https://github.com/jehy/hass-addons/blob/master/dbstats/README.MD
 codenotary: fate@jehy.ru
 ingress: true
