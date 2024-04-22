@@ -23,7 +23,11 @@ COPY rootfs /
 COPY --from=ghcr.io/jehy/hass-dbstats:0.3.8 /usr/src/app /usr/src/app
 COPY --from=ghcr.io/jehy/hass-dbstats:0.3.8 /var/www/html /var/www/html
 WORKDIR /usr/src/app
-RUN npm ci --omit=dev ## need to reinstall deps because they can be binary incompatible
+RUN npm ci --omit=dev && npm cache clean --force ## need to reinstall deps because they can be binary incompatible
+
+# Health check
+HEALTHCHECK --start-period=10 \
+    CMD curl --fail http://127.0.0.1:3000 || exit 1
 
 # Build arguments
 ARG BUILD_ARCH
