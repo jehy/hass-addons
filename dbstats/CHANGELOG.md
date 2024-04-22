@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.2
+
+- Update nodejs binary name to fix bug in aarch64 build
+
 ## 0.5.1
 
 - Update base node image to fix bug in aarch64 build

@@ -4,4 +4,4 @@
 # Runs dbstats
 # ==============================================================================
 bashio::log.info "Starting dbstats..."
-exec nodejs /usr/src/app/dist/backend/src/main.js
+exec node /usr/src/app/dist/backend/src/main.js

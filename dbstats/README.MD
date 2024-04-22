@@ -28,7 +28,7 @@ and push the button to add it to HA, or add it manually:
 2. Press three dots in the top right corner
 3. Add repository `https://github.com/jehy/hass-addons` to addon repositories
 4. Install addon from addons page
-5. Start addon and visit it's page
+5. Start addon and visit its page
 
 ## Using without supervisor or HAOS:
 
