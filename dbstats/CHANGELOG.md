@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.1
+
+- Update base node image to fix bug in aarch64 build
+
 ## 0.5.0
 
 - Add support for multiple platforms (aarch64, armv7)
