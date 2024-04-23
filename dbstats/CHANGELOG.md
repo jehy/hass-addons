@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.3
+
+- Bump base image to 0.3.9 to consume less RAM
+
 ## 0.5.2
 
 - Update nodejs binary name to fix bug in aarch64 build
