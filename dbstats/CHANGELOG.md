@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.4
+
+- Bump base image to 0.3.10 to set max execution time to ovoid eternal background tasks in database
+
 ## 0.5.3
 
 - Bump base image to 0.3.9 to consume less RAM
