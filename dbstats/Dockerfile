@@ -14,7 +14,7 @@ RUN apk update \
             python3-dev=3.11.9-r0 \
     && apk add sqlite \
     && apk add --no-cache \
-        nginx=1.24.0-r15 \
+        nginx=1.24.0-r16 \
     && rm -f -r /etc/nginx
 
 # Copy root file system
