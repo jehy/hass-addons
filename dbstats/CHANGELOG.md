@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.6
+
+- Fix misleading header name
+
 ## 0.5.5
 
 - Bump base image to 0.3.11 to speed up attributes count
