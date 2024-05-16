@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.5
+
+- Bump base image to 0.3.11 to speed up attributes count
+
 ## 0.5.4
 
 - Bump base image to 0.3.10 to set max execution time to ovoid eternal background tasks in database
