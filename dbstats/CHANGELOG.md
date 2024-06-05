@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.7
+
+- Replace chart library. It looks nicer now!
+
 ## 0.5.6
 
 - Fix misleading header name
