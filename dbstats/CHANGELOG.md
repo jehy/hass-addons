@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.8
+
+- Small chart fixes
+
 ## 0.5.7
 
 - Replace chart library. It looks nicer now!
