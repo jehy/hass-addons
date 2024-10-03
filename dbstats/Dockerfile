@@ -1,4 +1,4 @@
-ARG BUILD_FROM=ghcr.io/hassio-addons/base-nodejs:0.2.2
+ARG BUILD_FROM=ghcr.io/hassio-addons/base-nodejs:0.2.4
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
@@ -11,7 +11,7 @@ RUN apk update \
             build-base=0.5-r3 \
             linux-headers=6.5-r0 \
             py3-pip=23.3.1-r0 \
-            python3-dev=3.11.9-r0 \
+            python3-dev=3.11.10-r0 \
     && apk add sqlite \
     && apk add --no-cache \
         nginx=1.24.0-r16 \
@@ -20,8 +20,8 @@ RUN apk update \
 # Copy root file system
 COPY rootfs /
 
-COPY --from=ghcr.io/jehy/hass-dbstats:0.3.20 /usr/src/app /usr/src/app
-COPY --from=ghcr.io/jehy/hass-dbstats:0.3.20 /var/www/html /var/www/html
+COPY --from=ghcr.io/jehy/hass-dbstats:0.3.21 /usr/src/app /usr/src/app
+COPY --from=ghcr.io/jehy/hass-dbstats:0.3.21 /var/www/html /var/www/html
 WORKDIR /usr/src/app
 RUN npm ci --omit=dev && npm cache clean --force ## need to reinstall deps because they can be binary incompatible
 

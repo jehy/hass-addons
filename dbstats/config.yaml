@@ -1,5 +1,5 @@
 name: DbStats
-version: 0.5.8
+version: 0.5.10
 slug: dbstats
 description: Database stats for Home Assistant
 image: ghcr.io/jehy/dbstats-addon-{arch}
