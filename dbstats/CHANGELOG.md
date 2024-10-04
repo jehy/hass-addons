@@ -1,8 +1,12 @@
 # Changelog
 
+## 0.5.11
+
+- Bump base image to 0.3.22 to fix https://github.com/jehy/hass-addons/issues/8 (mysql table size)
+
 ## 0.5.10
 
-- Bump base image to 0.3.31 to fix https://github.com/jehy/hass-addons/issues/8
+- Bump base image to 0.3.21 to fix https://github.com/jehy/hass-addons/issues/8 (mysql table rows)
 - Bump HA node container version to 0.2.4
 
 ## 0.5.8
