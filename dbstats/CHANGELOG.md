@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.5.12
+ - Bump base image to 0.3.23 (bumps driver versions)
+ - Bump base nodejs image to 0.2.5
+ - Allow using database from `share` folder
+
 ## 0.5.11
 
 - Bump base image to 0.3.22 to fix https://github.com/jehy/hass-addons/issues/8 (mysql table size)
